@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRMC Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-book"></i>
+                <span>RRMC Library</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link active" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="#" class="nav-link" data-section="books"><i class="fas fa-book-open"></i> <span>Books</span></a></li>
+            <li><a href="#" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+            <li><a href="#" class="nav-link" data-section="issue-return"><i class="fas fa-exchange-alt"></i> <span>Issue/Return</span></a></li>
+            <li><a href="#" class="nav-link" data-section="about"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+            <li><a href="#" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Search books, students...">
+                </div>
+                <button class="scroll-top" id="scrollTop" title="Scroll to top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="dashboard-header">
+                    <div class="welcome-card">
+                        <div class="welcome-content">
+                            <h2>Welcome to Ramswarup Ramsagar Multiple Campus</h2>
+                            <p>Library Management System</p>
+                            <p class="subtitle">Manage your academic library with ease and efficiency</p>
+                        </div>
+                        <div class="welcome-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon books-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Books</h3>
+                            <p class="stat-number" id="totalBooksCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon available-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Available Books</h3>
+                            <p class="stat-number" id="availableBooksCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon issued-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Issued Books</h3>
+                            <p class="stat-number" id="issuedBooksCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon students-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Registered Students</h3>
+                            <p class="stat-number" id="totalStudentsCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon dept-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Departments</h3>
+                            <p class="stat-number">5</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon category-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Categories</h3>
+                            <p class="stat-number">8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn" data-action="add-book">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Book</span>
+                        </button>
+                        <button class="action-btn" data-action="add-student">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Student</span>
+                        </button>
+                        <button class="action-btn" data-action="issue-book">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Issue Book</span>
+                        </button>
+                        <button class="action-btn" data-action="return-book">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Return Book</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="recentActivityList">
+                        <p class="empty-state">No recent activity</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Books Section -->
+            <section id="books" class="section">
+                <div class="section-header">
+                    <h2>Book Management</h2>
+                    <button class="btn btn-primary" id="addBookBtn">
+                        <i class="fas fa-plus"></i> Add New Book
+                    </button>
+                </div>
+
+                <!-- Books Search and Filter -->
+                <div class="filters-bar">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="bookSearch" placeholder="Search books by title, author, ISBN...">
+                    </div>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="English">English</option>
+                        <option value="Management">Management</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                    </select>
+                </div>
+
+                <!-- Books Display -->
+                <div class="books-container" id="booksContainer">
+                    <p class="empty-state">No books available. Add a new book to get started.</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="booksPagination"></div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="section">
+                <div class="section-header">
+                    <h2>Student Management</h2>
+                    <button class="btn btn-primary" id="addStudentBtn">
+                        <i class="fas fa-plus"></i> Add New Student
+                    </button>
+                </div>
+
+                <!-- Students Search -->
+                <div class="filters-bar">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="studentSearch" placeholder="Search students by name, ID, email...">
+                    </div>
+                    <select id="departmentFilter" class="filter-select">
+                        <option value="">All Departments</option>
+                        <option value="BSc CSIT">BSc CSIT</option>
+                        <option value="BCA">BCA</option>
+                        <option value="Management">Management</option>
+                        <option value="Education">Education</option>
+                        <option value="Humanities">Humanities</option>
+                    </select>
+                </div>
+
+                <!-- Students Display -->
+                <div class="students-container" id="studentsContainer">
+                    <p class="empty-state">No students registered. Add a new student to get started.</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="studentsPagination"></div>
+            </section>
+
+            <!-- Issue & Return Section -->
+            <section id="issue-return" class="section">
+                <div class="issue-return-container">
+                    <!-- Issue Book Form -->
+                    <div class="issue-section">
+                        <h2>Issue Book</h2>
+                        <form id="issueForm" class="form">
+                            <div class="form-group">
+                                <label for="issueStudent">Student ID / Name</label>
+                                <input type="text" id="issueStudent" placeholder="Enter student ID or name" required>
+                                <div class="suggestions-list" id="issueStudentSuggestions"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="issueBook">Book ID / Title</label>
+                                <input type="text" id="issueBook" placeholder="Enter book ID or title" required>
+                                <div class="suggestions-list" id="issueBookSuggestions"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="issueDueDate">Due Date</label>
+                                <input type="date" id="issueDueDate" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Issue Book
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Return Book Form -->
+                    <div class="return-section">
+                        <h2>Return Book</h2>
+                        <form id="returnForm" class="form">
+                            <div class="form-group">
+                                <label for="returnIssueId">Issue Record ID</label>
+                                <input type="text" id="returnIssueId" placeholder="Enter issue ID" required>
+                                <div class="suggestions-list" id="returnIssueSuggestions"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="returnDate">Return Date</label>
+                                <input type="date" id="returnDate" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Return Book
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Issue History Table -->
+                <div class="issue-history">
+                    <h2>Issue & Return History</h2>
+                    <div class="filters-bar">
+                        <div class="search-input">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="issueSearch" placeholder="Search by student name, book name...">
+                        </div>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="Issued">Issued</option>
+                            <option value="Returned">Returned</option>
+                            <option value="Overdue">Overdue</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="issueTable">
+                            <thead>
+                                <tr>
+                                    <th>Issue ID</th>
+                                    <th>Student Name</th>
+                                    <th>Book Title</th>
+                                    <th>Issue Date</th>
+                                    <th>Due Date</th>
+                                    <th>Return Date</th>
+                                    <th>Status</th>
+                                    <th>Fine</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="issueTableBody">
+                                <tr><td colspan="9" class="empty-state">No issue records found</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2>About RSMC Library</h2>
+                
+                <div class="about-container">
+                    <div class="about-card">
+                        <h3><i class="fas fa-graduation-cap"></i> About Us</h3>
+                        <p>
+                            Ramswarup Ramsagar Multiple Campus (RRMC) Library is a state-of-the-art academic resource center dedicated to supporting the educational excellence of our students and faculty. Our library houses an extensive collection of books, journals, and digital resources across various disciplines.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <h3><i class="fas fa-target"></i> Mission & Vision</h3>
+                        <div>
+                            <strong>Mission:</strong>
+                            <p>To provide comprehensive information resources and services that support academic learning, research, and intellectual development of our campus community.</p>
+                            <strong>Vision:</strong>
+                            <p>To be a premier academic library that fosters innovation, collaboration, and lifelong learning in a digital age.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <h3><i class="fas fa-clock"></i> Library Hours</h3>
+                        <ul class="hours-list">
+                            <li><strong>Monday - Friday:</strong> 8:00 AM - 6:00 PM</li>
+                            <li><strong>Saturday:</strong> 9:00 AM - 4:00 PM</li>
+                            <li><strong>Sunday:</strong> Closed</li>
+                            <li><strong>Public Holidays:</strong> Closed</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3><i class="fas fa-book"></i> Library Collection</h3>
+                        <ul class="collection-list">
+                            <li><strong>Total Books:</strong> <span id="aboutTotalBooks">0</span></li>
+                            <li><strong>Journals & Magazines:</strong> 500+</li>
+                            <li><strong>Digital Resources:</strong> 1000+</li>
+                            <li><strong>Reference Materials:</strong> 200+</li>
+                            <li><strong>Research Papers:</strong> 500+</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3><i class="fas fa-rules"></i> Library Rules & Regulations</h3>
+                        <ul class="rules-list">
+                            <li>Be respectful and maintain silence in the library</li>
+                            <li>Valid ID card must be presented for borrowing books</li>
+                            <li>Each student can borrow maximum 5 books at a time</li>
+                            <li>Maximum borrowing period is 14 days</li>
+                            <li>Fine for overdue books: Rs. 5 per day per book</li>
+                            <li>Food and beverages are not allowed inside</li>
+                            <li>Maintain cleanliness and handle books carefully</li>
+                            <li>Return damaged or lost books as per library policy</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3><i class="fas fa-headset"></i> Facilities & Services</h3>
+                        <ul class="facilities-list">
+                            <li>Free WiFi Access</li>
+                            <li>Computer Workstations</li>
+                            <li>Printing & Scanning Services</li>
+                            <li>Reading Areas & Study Zones</li>
+                            <li>Rare Books Collection</li>
+                            <li>Online Database Access</li>
+                            <li>Research Assistance</li>
+                            <li>Audiovisual Materials</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h2>Contact Us</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <i class="fas fa-phone"></i>
+                            <h3>Phone</h3>
+                            <p>+977-1-4123456</p>
+                            <p>+977-1-4123457</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p>library@rrmc.edu.np</p>
+                            <p>info@rrmc.edu.np</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Address</h3>
+                            <p>Ramswarup Ramsagar Multiple Campus</p>
+                            <p>janakpurdham, Nepal</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-share-alt"></i>
+                            <h3>Follow Us</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="contactForm" class="contact-form">
+                        <h3>Send us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label for="contactName">Full Name</label>
+                            <input type="text" id="contactName" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" placeholder="Your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" placeholder="Subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    
+    <!-- Add/Edit Book Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="bookModalTitle">Add New Book</h2>
+                <button class="modal-close" data-modal="bookModal">&times;</button>
+            </div>
+            <form id="bookForm" class="form">
+                <div class="form-group">
+                    <label for="bookId">Book ID</label>
+                    <input type="text" id="bookId" placeholder="Auto-generated" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="bookName">Book Title *</label>
+                    <input type="text" id="bookName" placeholder="Enter book title" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Author Name *</label>
+                    <input type="text" id="bookAuthor" placeholder="Enter author name" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookCategory">Category *</label>
+                    <select id="bookCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="English">English</option>
+                        <option value="Management">Management</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookISBN">ISBN Number *</label>
+                    <input type="text" id="bookISBN" placeholder="Enter ISBN number" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookShelf">Shelf Number *</label>
+                    <input type="text" id="bookShelf" placeholder="Enter shelf number" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookYear">Publication Year *</label>
+                    <input type="number" id="bookYear" min="1900" max="2099" placeholder="Enter publication year" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookQuantity">Quantity *</label>
+                    <input type="number" id="bookQuantity" min="1" placeholder="Number of copies" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookCover">Book Cover Image URL</label>
+                    <input type="text" id="bookCover" placeholder="https://example.com/book-cover.jpg">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Book
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-modal="bookModal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="studentModalTitle">Add New Student</h2>
+                <button class="modal-close" data-modal="studentModal">&times;</button>
+            </div>
+            <form id="studentForm" class="form">
+                <div class="form-group">
+                    <label for="studentId">Student ID</label>
+                    <input type="text" id="studentId" placeholder="Auto-generated" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="studentName">Full Name *</label>
+                    <input type="text" id="studentName" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail">Email Address *</label>
+                    <input type="email" id="studentEmail" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentPhone">Phone Number *</label>
+                    <input type="tel" id="studentPhone" placeholder="Enter phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentDepartment">Department/Faculty *</label>
+                    <select id="studentDepartment" required>
+                        <option value="">Select Department</option>
+                        <option value="BSc CSIT">BSc CSIT</option>
+                        <option value="BCA">BCA</option>
+                        <option value="Management">Management</option>
+                        <option value="Education">Education</option>
+                        <option value="Humanities">Humanities</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentSemester">Semester *</label>
+                    <select id="studentSemester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1st">1st Semester</option>
+                        <option value="2nd">2nd Semester</option>
+                        <option value="3rd">3rd Semester</option>
+                        <option value="4th">4th Semester</option>
+                        <option value="5th">5th Semester</option>
+                        <option value="6th">6th Semester</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentAddress">Address</label>
+                    <textarea id="studentAddress" rows="3" placeholder="Enter address"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Student
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-modal="studentModal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div id="bookDetailsModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>Book Details</h2>
+                <button class="modal-close" data-modal="bookDetailsModal">&times;</button>
+            </div>
+            <div id="bookDetailsContent" class="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Profile Modal -->
+    <div id="studentProfileModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>Student Profile</h2>
+                <button class="modal-close" data-modal="studentProfileModal">&times;</button>
+            </div>
+            <div id="studentProfileContent" class="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
